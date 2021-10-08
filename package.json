@@ -4,28 +4,34 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:test": "next dev -p 9000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
-  },
-  "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "lint": "next lint",
+    "test": "npm run e2e:headless",
+    "cypress:headless": "cypress run",
+    "e2e": "start-server-and-test dev:test http://localhost:9000 test",
+    "e2e:headless": "start-server-and-test dev:test http://localhost:9000 cypress:headless"
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
     "@fabric-ds/react": "0.0.3",
     "@types/react": "^16.14.0",
-    "next": "10.2.3",
+    "next": "11.1.2",
     "next-transpile-modules": "^8.0.0",
+    "node-mocks-http": "^1.11.0",
     "prettier": "^2.4.1",
-    "react": "16.14.0",
-    "react-dom": "16.14.0",
-    "typescript": "^4.4.3"
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "swr": "^1.0.1",
+    "typescript": "^4.4.3",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.3.6",
+    "cypress": "^8.5.0",
     "eslint": "7.32.0",
-    "eslint-config-next": "11.1.2"
+    "eslint-config-next": "11.1.2",
+    "start-server-and-test": "^1.14.0"
   }
 }
