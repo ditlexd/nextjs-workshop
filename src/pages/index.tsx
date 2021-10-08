@@ -43,44 +43,46 @@ export default function App() {
         />
       )}
       <h2 className={'mt-128 ml-8'}>Here are some products!</h2>
-      <div className="grid f-grid grid-cols-1 md:grid-cols-3 md:gap-32">
+      <ul className="grid f-grid grid-cols-1 md:grid-cols-3 md:gap-32">
         {products &&
           products.map((product, index) => {
             return (
-              <Card
-                className="mx-8 my-8 flex flex-col justify-evenly"
-                key={product.name}
-              >
-                <div
-                  data-cy={`card-${index}`}
-                  onClick={() =>
-                    setProductInModal((prev) => (prev ? null : product))
-                  }
+              <li>
+                <Card
+                  className="mx-8 my-8 flex flex-col justify-evenly"
+                  key={product.name}
                 >
-                  <img
-                    className="h-144 w-full object-cover"
-                    src={product.imgUrl}
-                  />
-                  <p className="font-bold mt-8">{product.name}</p>
-                  <p>{product.description}</p>
-                </div>
-                <Button
-                  negative
-                  pill
-                  small
-                  data-cy={'Delete'}
-                  onClick={() => {
-                    deleteProduct(product.id).then(() =>
-                      mutate('/api/products')
-                    );
-                  }}
-                >
-                  Remove
-                </Button>
-              </Card>
+                  <div
+                    data-cy={`card-${index}`}
+                    onClick={() =>
+                      setProductInModal((prev) => (prev ? null : product))
+                    }
+                  >
+                    <img
+                      className="h-144 w-full object-cover"
+                      src={product.imgUrl}
+                    />
+                    <p className="font-bold mt-8">{product.name}</p>
+                    <p>{product.description}</p>
+                  </div>
+                  <Button
+                    negative
+                    pill
+                    small
+                    data-cy={'Delete'}
+                    onClick={() => {
+                      deleteProduct(product.id).then(() =>
+                        mutate('/api/products')
+                      );
+                    }}
+                  >
+                    Remove
+                  </Button>
+                </Card>
+              </li>
             );
           })}
-      </div>
+      </ul>
     </div>
   );
 }

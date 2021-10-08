@@ -45,14 +45,24 @@ describe('Delete a product', () => {
 
   it('Should be able to delete a product', () => {
     cy.visit('http://localhost:9000/');
-    cy.contains('Pizza');
-    cy.get('[data-cy=Delete]').click({ multiple: true });
+    cy.get('ul li:first').find('[data-cy=Delete]').click();
     cy.get('Pizza').should('not.exist');
   });
 });
 
-/*
 describe('New product page', () => {
+  const name = 'Testitem!';
+  const description = 'Short description';
+  const imgUrl = 'www.fake-url.com';
+
+  it('API route should create a new item', () => {
+    cy.request(
+      'POST',
+      `http://localhost:9000/api/products`,
+      JSON.stringify(name, description, imgUrl)
+    ).should((response) => expect(response.status).to.eql(201));
+  });
+
   it('Should be possible to create a new product', () => {
     cy.visit('http://localhost:9000/new-product');
     cy.contains('Name').type('Koffert');
@@ -64,9 +74,7 @@ describe('New product page', () => {
     cy.contains('En fin og stor koffert!');
   });
 });
- */
 
-/*
 describe('Update product', () => {
   it('Should be able to update a product', () => {
     cy.visit('http://localhost:9000/');
@@ -81,4 +89,3 @@ describe('Update product', () => {
     cy.contains('Really good, brand new product');
   });
 });
- */
