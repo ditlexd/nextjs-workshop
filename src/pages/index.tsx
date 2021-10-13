@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card } from '@fabric-ds/react';
 import useSwr, { useSWRConfig } from 'swr';
 import { Product } from '../totally-real-database/database-api';
 import EditProductModal from '../components/Modal';
-import { deleteProduct } from '../client/APIClient';
+import ProductCard from '../components/Card';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -47,39 +46,13 @@ export default function App() {
         {products &&
           products.map((product, index) => {
             return (
-              <li>
-                <Card
-                  className="mx-8 my-8 flex flex-col justify-evenly"
-                  key={product.name}
-                >
-                  <div
-                    data-cy={`card-${index}`}
-                    onClick={() =>
-                      setProductInModal((prev) => (prev ? null : product))
-                    }
-                  >
-                    <img
-                      className="h-144 w-full object-cover"
-                      src={product.imgUrl}
-                    />
-                    <p className="font-bold mt-8">{product.name}</p>
-                    <p>{product.description}</p>
-                  </div>
-                  <Button
-                    negative
-                    pill
-                    small
-                    data-cy={'Delete'}
-                    onClick={() => {
-                      deleteProduct(product.id).then(() =>
-                        mutate('/api/products')
-                      );
-                    }}
-                  >
-                    Remove
-                  </Button>
-                </Card>
-              </li>
+              <ProductCard
+                key={product.id}
+                product={product}
+                index={index}
+                mutate={mutate}
+                setProductInModal={setProductInModal}
+              />
             );
           })}
       </ul>
