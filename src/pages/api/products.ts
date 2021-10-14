@@ -58,6 +58,12 @@ function get(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
+/*
+ * Helper function to get a single product.
+ * Should return 404 if the product with the given ID does not exists
+ * 200 along with the product otherwise
+ */
+
 function getSingle(req: NextApiRequest, res: NextApiResponse, id: string) {
   const product = getProduct(id);
   if (product) {
@@ -67,6 +73,12 @@ function getSingle(req: NextApiRequest, res: NextApiResponse, id: string) {
   }
 }
 
+/*
+ * Delete a single product.
+ * takes a query parameter 'id'. Returns 400 if the ID is null or undefined,
+ * 404 if it does not exists. 201 if it exists and we successfully delete
+ * the item.
+ */
 function del(req: NextApiRequest, res: NextApiResponse) {
   if (req.query.id === 'undefined' || req.query.id === 'null') {
     res.status(400).end();
@@ -76,6 +88,13 @@ function del(req: NextApiRequest, res: NextApiResponse) {
   deleteElement(req.query.id as string);
   res.status(201).end();
 }
+
+/*
+ * Update an existing item.
+ * Should follow the same conventions as del, 400 if any of the parameters
+ * 'name', 'description', 'imgUrl', 'id' are null or undefined.
+ *
+ */
 
 function put(req: NextApiRequest, res: NextApiResponse) {
   const { name, description, imgUrl, id } = JSON.parse(req.body);
