@@ -79,7 +79,7 @@ export function deleteElement(idToDelete: string) {
   products = products.filter(({ id }) => id != idToDelete);
 }
 
-export function getProduct(id: string): Product? {
+export function getProduct(id: string): Product {
   return products.find((prod) => prod.id === id);
 }
 
