@@ -1,12 +1,7 @@
-import {
-  getProducts,
-  deleteElement,
-  insertProduct,
-  updateProduct,
-  resetDatabase,
-  getProduct,
-} from '../../totally-real-database/database-api';
+import { Database } from '../../totally-real-database/api';
 import { NextApiRequest, NextApiResponse } from 'next';
+
+const db = new Database();
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
@@ -30,17 +25,17 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
 /*
  * Create a new product.
- * Should an object { name: string, description: string, imgUr: string }
+ * Should be an object { name: string, description: string, imgUr: string }
  * Should respond with a 201 status code or 400 if any of the arguments
  * are invalid (null/undefined)
  */
 function post(req: NextApiRequest, res: NextApiResponse) {
   const { name, description, imgUrl } = JSON.parse(req.body);
-  if (!name || !description || !imgUrl) {
-    res.status(400).end();
-    return;
-  }
-  insertProduct(name, description, imgUrl);
+
+  if (!name || !description || !imgUrl) return res.status(400).end();
+
+  db.insert({ name, description, imgUrl });
+
   res.status(201).end();
 }
 
@@ -54,7 +49,7 @@ function get(req: NextApiRequest, res: NextApiResponse) {
   if (typeof req.query.id === 'string') {
     getSingle(req, res, req.query.id);
   } else {
-    res.status(200).json(getProducts());
+    res.status(200).json(db.getAll());
   }
 }
 
@@ -65,7 +60,7 @@ function get(req: NextApiRequest, res: NextApiResponse) {
  */
 
 function getSingle(req: NextApiRequest, res: NextApiResponse, id: string) {
-  const product = getProduct(id);
+  const product = db.get(id);
   if (product) {
     res.status(200).json(product);
   } else {
@@ -80,12 +75,13 @@ function getSingle(req: NextApiRequest, res: NextApiResponse, id: string) {
  * the item.
  */
 function del(req: NextApiRequest, res: NextApiResponse) {
-  if (req.query.id === 'undefined' || req.query.id === 'null') {
-    res.status(400).end();
-    return;
+  const id = req.query.id as string;
+
+  if (id === 'undefined' || id === 'null') {
+    return res.status(400).end();
   }
 
-  deleteElement(req.query.id as string);
+  db.delete(id);
   res.status(201).end();
 }
 
@@ -99,11 +95,10 @@ function del(req: NextApiRequest, res: NextApiResponse) {
 function put(req: NextApiRequest, res: NextApiResponse) {
   const { name, description, imgUrl, id } = JSON.parse(req.body);
   if (!name || !description || !imgUrl || !id) {
-    res.status(400).end();
-    return;
+    return res.status(400).end();
   }
 
-  updateProduct({ name, description, imgUrl, id });
+  db.update({ id, name, description, imgUrl });
   res.status(201).end();
 }
 
@@ -113,6 +108,6 @@ function put(req: NextApiRequest, res: NextApiResponse) {
  * with each other.
  */
 function patch(req: NextApiRequest, res: NextApiResponse) {
-  resetDatabase();
+  db.reset();
   res.status(204).end();
 }

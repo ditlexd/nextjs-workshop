@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@chbphone55/classnames": "^2.0.0",
+    "@fabric-ds/elements": "^0.0.2",
     "@fabric-ds/react": "0.0.6",
     "@types/react": "^16.14.0",
     "next": "11.1.2",

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import useSwr, { useSWRConfig } from 'swr';
-import { Product } from '../totally-real-database/database-api';
-import EditProductModal from '../components/Modal';
+import useSwr from 'swr';
 import ProductCard from '../components/Card';
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
+import EditProductModal from '../components/Modal';
+import { Product } from '../totally-real-database/api';
+import { Button } from '@fabric-ds/react';
+import Link from 'next/link';
 
 export default function App() {
-  const { mutate } = useSWRConfig();
-  const { data, error } = useSwr('/api/products', fetcher);
+  const { data, error, mutate } = useSwr('/api/products');
   const [products, setProducts] = useState<Product[]>([]);
 
   const [productInModal, setProductInModal] = useState<Product | null>(null);
@@ -41,7 +40,17 @@ export default function App() {
           onDismiss={() => setProductInModal(null)}
         />
       )}
-      <h2 className={'mt-128 ml-8'}>Here are some products!</h2>
+
+      <div className="flex items-center justify-between	mt-40 mb-12">
+        <h2>Here are some products!</h2>
+        <Link href="/new-product">
+          <a>
+            <Button utility small>
+              Create new product
+            </Button>
+          </a>
+        </Link>
+      </div>
       <ul className="grid f-grid grid-cols-1 md:grid-cols-3 md:gap-32">
         {products &&
           products.map((product, index) => {

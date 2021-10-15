@@ -1,8 +1,8 @@
 import { Button, Modal, TextField } from '@fabric-ds/react';
 import { useState } from 'react';
-import { Product } from '../totally-real-database/database-api';
 import { updateProduct } from '../client/APIClient';
 import { useSWRConfig } from 'swr';
+import { Product } from '../totally-real-database/api';
 
 export default function EditProductModal({
   product,

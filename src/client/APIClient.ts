@@ -1,4 +1,4 @@
-import { Product } from '../totally-real-database/database-api';
+import { Product } from '../totally-real-database/api';
 
 export function postNewProduct(name: string, description: string, url: string) {
   return fetch('/api/products', {
