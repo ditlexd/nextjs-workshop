@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import useSwr, { useSWRConfig } from 'swr';
 import { Product } from '../totally-real-database/database-api';
 import EditProductModal from '../components/Modal';
-import ProductCard from '../components/Card';
+import ProductCard from '../components/ProductCard';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
