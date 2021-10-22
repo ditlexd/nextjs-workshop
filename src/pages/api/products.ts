@@ -46,26 +46,7 @@ function post(req: NextApiRequest, res: NextApiResponse) {
  * iff ID is provided.
  */
 function get(req: NextApiRequest, res: NextApiResponse) {
-  if (typeof req.query.id === 'string') {
-    getSingle(req, res, req.query.id);
-  } else {
-    res.status(200).json(db.getAll());
-  }
-}
-
-/*
- * Helper function to get a single product.
- * Should return 404 if the product with the given ID does not exists
- * 200 along with the product otherwise
- */
-
-function getSingle(req: NextApiRequest, res: NextApiResponse, id: string) {
-  const product = db.get(id);
-  if (product) {
-    res.status(200).json(product);
-  } else {
-    res.status(404).end();
-  }
+  res.status(200).json(db.getAll());
 }
 
 /*
