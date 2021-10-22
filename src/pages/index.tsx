@@ -5,12 +5,18 @@ import EditProductModal from '../components/edit-product-modal';
 import { Product } from '../totally-real-database/api';
 import { Button } from '@fabric-ds/react';
 import Link from 'next/link';
+import { deleteProduct } from '../client/APIClient';
 
 export default function App() {
   const { data, error, mutate } = useSwr('/api/products');
   const [products, setProducts] = useState<Product[]>([]);
 
   const [productInModal, setProductInModal] = useState<Product | null>(null);
+
+  async function handleDeleteProduct(productId: string) {
+    await deleteProduct(productId);
+    mutate();
+  }
 
   useEffect(() => {
     setProducts(data);
@@ -59,10 +65,10 @@ export default function App() {
                 key={product.id}
                 product={product}
                 index={index}
-                mutate={mutate}
                 onClick={() =>
                   setProductInModal((prev) => (prev ? null : product))
                 }
+                handleDeleteProduct={handleDeleteProduct}
               />
             );
           })}

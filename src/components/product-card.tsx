@@ -6,21 +6,16 @@ import { Product } from '../totally-real-database/api';
 type Props = {
   product: Product;
   index: number;
-  onClick: () => void;
-  mutate: () => void;
+  onClick?: () => void;
+  handleDeleteProduct?: (productId: string) => void;
 };
 
 export default function ProductCard({
   product,
   index,
   onClick,
-  mutate,
+  handleDeleteProduct,
 }): JSX.Element {
-  async function handleDeleteProduct() {
-    await deleteProduct(product.id);
-    mutate();
-  }
-
   return (
     <li key={product.id}>
       <Card
@@ -42,7 +37,7 @@ export default function ProductCard({
             negative
             pill
             small
-            onClick={handleDeleteProduct}
+            onClick={() => handleDeleteProduct(product.id)}
           >
             Remove
           </Button>
