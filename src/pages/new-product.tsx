@@ -6,14 +6,14 @@ import { postNewProduct } from '../client/APIClient';
 export default function NewProductPage() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [url, setUrl] = useState('');
+  const [imgUrl, setImgUrl] = useState('');
 
   async function onSubmit(e) {
     e.preventDefault();
-    await postNewProduct(name, description, url);
+    await postNewProduct(name, description, imgUrl);
     setName('');
     setDescription('');
-    setUrl('');
+    setImgUrl('');
   }
 
   return (
@@ -44,8 +44,8 @@ export default function NewProductPage() {
         <TextField
           label="Image url"
           className="mb-12"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
+          value={imgUrl}
+          onChange={(e) => setImgUrl(e.target.value)}
         />
         <Button data-cy="Submit" type="submit">
           Submit

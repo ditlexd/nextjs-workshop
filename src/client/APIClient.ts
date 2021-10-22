@@ -1,9 +1,13 @@
 import { Product } from '../totally-real-database/api';
 
-export function postNewProduct(name: string, description: string, url: string) {
+export function postNewProduct(
+  name: string,
+  description: string,
+  imgUrl: string
+) {
   return fetch('/api/products', {
     method: 'POST',
-    body: JSON.stringify({ name, description, imgUrl: url }),
+    body: JSON.stringify({ name, description, imgUrl }),
   });
 }
 
