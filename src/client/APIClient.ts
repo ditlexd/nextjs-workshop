@@ -7,19 +7,14 @@ export function postNewProduct(name: string, description: string, url: string) {
   });
 }
 
-export function updateProduct(
-  name: string,
-  description: string,
-  imgUrl: string,
-  prev: Product
-) {
+export function updateProduct({ name, description, imgUrl, id }: Product) {
   return fetch('/api/products', {
     method: 'PUT',
     body: JSON.stringify({
       name,
       description,
       imgUrl,
-      id: prev.id,
+      id,
     }),
   });
 }

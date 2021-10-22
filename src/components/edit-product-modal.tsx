@@ -18,7 +18,7 @@ export default function EditProductModal({
 
   function onSubmit(e) {
     e.preventDefault();
-    updateProduct(name, description, imgUrl, product)
+    updateProduct({ name, description, imgUrl, id: product.id })
       .then(() => mutate('/api/products'))
       .then(onDismiss);
   }
