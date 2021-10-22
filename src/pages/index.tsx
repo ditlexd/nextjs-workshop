@@ -9,18 +9,12 @@ import { deleteProduct } from '../client/APIClient';
 
 export default function App() {
   const { data, error, mutate } = useSwr('/api/products');
-  const [products, setProducts] = useState<Product[]>([]);
-
   const [productInModal, setProductInModal] = useState<Product | null>(null);
 
   async function handleDeleteProduct(productId: string) {
     await deleteProduct(productId);
     mutate();
   }
-
-  useEffect(() => {
-    setProducts(data);
-  }, [data]);
 
   if (error) {
     return (
@@ -58,20 +52,19 @@ export default function App() {
         </Link>
       </div>
       <ul className="grid f-grid grid-cols-1 md:grid-cols-3 md:gap-32">
-        {products &&
-          products.map((product, index) => {
-            return (
-              <ProductCard
-                key={product.id}
-                product={product}
-                index={index}
-                onClick={() =>
-                  setProductInModal((prev) => (prev ? null : product))
-                }
-                handleDeleteProduct={handleDeleteProduct}
-              />
-            );
-          })}
+        {data.map((product, index) => {
+          return (
+            <ProductCard
+              key={product.id}
+              product={product}
+              index={index}
+              onClick={() =>
+                setProductInModal((prev) => (prev ? null : product))
+              }
+              handleDeleteProduct={handleDeleteProduct}
+            />
+          );
+        })}
       </ul>
     </div>
   );
