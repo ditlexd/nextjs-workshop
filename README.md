@@ -77,10 +77,12 @@ function `deleteElement`.
 
 When this is done, send a `201` status code back to the client.
 
-For the client code, you need to update the list of products somehow. You can do this any way you'd like. You could
-modify the API to return the new list of products, or maybe do a new
-request to the server and ask for the updated list of products?
-Or you could remove the item from the list you already have. The choice is yours! 
+For the client code, you need to update the list of products somehow. You can do this any way you'd like, but what we
+recommend for this app is that you use the `mutate()` function that is provided by [useSWR.](https://swr.vercel.app/docs/mutation)
+This will fetch the new list of products automatically for you. 
+
+Another option is to modify the `delete` API so that it returns the new list of products right away. 
+
 
 ## New product page
 
@@ -92,8 +94,7 @@ So here is what you need to do:
 - Create a new [page](https://nextjs.org/docs/basic-features/pages) by creating a file `src/pages/new-product`. This page should now be visible at `localhost:3000/new-product`.
 - Set up a form with three [textfield](https://react.fabric-ds.io/textfield) and a button to submit the form.
 - The form should do a POST request similar to the DELETE request you implemented in the previous assignment.
-- The request needs to contain `name`, `description` and `imgUrl`. 
-
+- The request needs to contain `name`, `description` and `imgUrl`.
 
 ## Update product page
 
