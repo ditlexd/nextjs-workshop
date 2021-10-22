@@ -77,11 +77,12 @@ function `deleteElement`.
 
 When this is done, send a `201` status code back to the client.
 
-For the client code, you need to update the list of products somehow. You can do this any way you'd like, maybe do a new
+For the client code, you need to update the list of products somehow. You can do this any way you'd like. You could
+modify the API to return the new list of products, or maybe do a new
 request to the server and ask for the updated list of products?
 Or you could remove the item from the list you already have. The choice is yours! 
 
-### New product page
+## New product page
 
 Ok so this one is a little different. Not only do we need to create the API endpoint for creating a new product, we also
 need to build a new page for the input form we need. 
@@ -96,13 +97,37 @@ So here is what you need to do:
 
 ## Update product page
 
-Here you could use the provided `<Modal>` component.
+Here you could use the provided `<Modal>` component. A `Modal` is a "pop up", or an overlay over the screen.
+
+This modal takes two props: `productInModal` and `onDismiss`. The former is of the type `Product | null` while the latter
+is a function that should trigger the removal of the modal. 
+On dismiss is passed to the `Fabric` modal component, and is the function that is called when we exit the modal, either
+by clicking out of it or hitting `ESC`.
+
+
+An implementation of this could look like: 
+
+```js
+const [productInModal, setProductInModal] = useState<Product | null>(null);
+
+...
+
+{productInModal && (
+  <EditProductModal
+    product={productInModal}
+    onDismiss={() => setProductInModal(null)}
+  />
+)}
+```
+
+We should probably add an `onClick` to the cards as well, one that calls `setProductInModal` with the card's Product as
+argument. 
 
 The API endpoint should be pretty similar to the new product one.
 
 As for the client, you should probably do something like this:
 - Have a state variable that decides if the modal is visibile or not. It should probably be activated if you click on
-one of the products.
-- The modal should have a form, much like the new product page. The form be pre-filled with values
+one of the products. We need a function 
+- The modal should have a form, much like the new product page. The form should be pre-filled with values that 
 
 
