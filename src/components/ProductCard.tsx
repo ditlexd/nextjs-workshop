@@ -1,11 +1,19 @@
 import { Button, Card } from '@fabric-ds/react';
 import { deleteProduct } from '../client/APIClient';
 import React from 'react';
+import { Product } from '../totally-real-database/database-api';
+
+type Props = {
+  product: Product;
+  index: number;
+  onClick: () => void;
+  mutate: () => void;
+};
 
 export default function ProductCard({
   product,
   index,
-  setProductInModal,
+  onClick,
   mutate,
 }): JSX.Element {
   async function handleDeleteProduct() {
@@ -19,10 +27,7 @@ export default function ProductCard({
         className="mr-8 my-8 flex flex-col justify-evenly"
         key={product.name}
       >
-        <div
-          data-cy={`card-${index}`}
-          onClick={() => setProductInModal((prev) => (prev ? null : product))}
-        >
+        <div data-cy={`card-${index}`} onClick={onClick}>
           <img
             className="h-144 w-full object-cover"
             src={product.imgUrl}
@@ -35,6 +40,7 @@ export default function ProductCard({
           <Button
             data-cy={'Delete'}
             negative
+            pill
             small
             onClick={handleDeleteProduct}
           >

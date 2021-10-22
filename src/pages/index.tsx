@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useSwr from 'swr';
-import ProductCard from '../components/Card';
+import ProductCard from '../components/ProductCard';
 import EditProductModal from '../components/Modal';
 import { Product } from '../totally-real-database/api';
 import { Button } from '@fabric-ds/react';
@@ -60,7 +60,9 @@ export default function App() {
                 product={product}
                 index={index}
                 mutate={mutate}
-                setProductInModal={setProductInModal}
+                onClick={() =>
+                  setProductInModal((prev) => (prev ? null : product))
+                }
               />
             );
           })}
