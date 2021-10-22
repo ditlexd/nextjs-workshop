@@ -3,7 +3,6 @@ beforeEach(() => {
    * Reset the database before every request. This way we can work with a
    * fresh set of data, and our tests don't affect each other
    */
-
   cy.request('PATCH', 'http://localhost:9000/api/products').should(
     (response) => {
       expect(response.status).to.eq(204);
@@ -33,7 +32,7 @@ describe('Display products', () => {
     cy.contains('Best shoes around. Guaranteed!');
   });
 });
-
+/*
 describe('Delete a product', () => {
   const productIdToDelete = '6eee6ba7-2110-4216-9d3d-1b74621249ac';
   it('API route should return 201 when product is deleted', () => {
@@ -101,3 +100,5 @@ describe('Update product', () => {
     cy.contains('Really good, brand new product');
   });
 });
+
+ */
