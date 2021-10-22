@@ -15,7 +15,7 @@ export default function ProductCard({
   index,
   onClick,
   handleDeleteProduct,
-}): JSX.Element {
+}: Props): JSX.Element {
   return (
     <li key={product.id}>
       <Card
