@@ -30,7 +30,7 @@ let products: Product[] = [
       'https://images.pexels.com/photos/4495753/pexels-photo-4495753.jpeg?cs=srgb&dl=pexels-karolina-grabowska-4495753.jpg&fm=jpg',
   },
   {
-    id: '81fc0c61-6e49-4886-aa93-bd3c3b099301',
+    id: '81fc0c61-6e49-4886-aa93-bd3c3b099302',
     name: 'Dress',
     description: 'Beautiful dress, perfect for a summer day in New York.',
     imgUrl:
@@ -129,7 +129,7 @@ export function resetDatabase() {
         'https://images.pexels.com/photos/4495753/pexels-photo-4495753.jpeg?cs=srgb&dl=pexels-karolina-grabowska-4495753.jpg&fm=jpg',
     },
     {
-      id: '81fc0c61-6e49-4886-aa93-bd3c3b099301',
+      id: '81fc0c61-6e49-4886-aa93-bd3c3b099302',
       name: 'Dress',
       description: 'Beautiful dress, perfect for a summer day in New York.',
       imgUrl:
