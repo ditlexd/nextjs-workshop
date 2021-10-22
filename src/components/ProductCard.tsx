@@ -1,7 +1,7 @@
 import { Button, Card } from '@fabric-ds/react';
 import { deleteProduct } from '../client/APIClient';
 import React from 'react';
-import { Product } from '../totally-real-database/database-api';
+import { Product } from '../totally-real-database/api';
 
 type Props = {
   product: Product;
