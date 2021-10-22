@@ -51,7 +51,9 @@ export default function App() {
                 product={product}
                 index={index}
                 mutate={mutate}
-                setProductInModal={setProductInModal}
+                onClick={() =>
+                  setProductInModal((prev) => (prev ? null : product))
+                }
               />
             );
           })}

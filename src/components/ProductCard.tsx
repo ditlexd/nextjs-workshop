@@ -5,7 +5,7 @@ import React from 'react';
 export default function ProductCard({
   product,
   index,
-  setProductInModal,
+  onClick,
   mutate,
 }): JSX.Element {
   return (
@@ -14,10 +14,7 @@ export default function ProductCard({
         className="mx-8 my-8 flex flex-col justify-evenly"
         key={product.name}
       >
-        <div
-          data-cy={`card-${index}`}
-          onClick={() => setProductInModal((prev) => (prev ? null : product))}
-        >
+        <div data-cy={`card-${index}`} onClick={onClick}>
           <img className="h-144 w-full object-cover" src={product.imgUrl} />
           <p className="font-bold mt-8">{product.name}</p>
           <p>{product.description}</p>
