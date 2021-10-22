@@ -1,5 +1,4 @@
 import { Button, Card } from '@fabric-ds/react';
-import { deleteProduct } from '../client/APIClient';
 import React from 'react';
 import { Product } from '../totally-real-database/api';
 

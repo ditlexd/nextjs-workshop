@@ -30,13 +30,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
  * are invalid (null/undefined)
  */
 function post(req: NextApiRequest, res: NextApiResponse) {
-  const { name, description, imgUrl } = JSON.parse(req.body);
-
-  if (!name || !description || !imgUrl) return res.status(400).end();
-
-  db.insert({ name, description, imgUrl });
-
-  res.status(201).end();
+  // TODO
 }
 
 /*
@@ -56,14 +50,7 @@ function get(req: NextApiRequest, res: NextApiResponse) {
  * the item.
  */
 function del(req: NextApiRequest, res: NextApiResponse) {
-  const id = req.query.id as string;
-
-  if (id === 'undefined' || id === 'null') {
-    return res.status(400).end();
-  }
-
-  db.delete(id);
-  res.status(201).end();
+  // TODO
 }
 
 /*
@@ -74,13 +61,7 @@ function del(req: NextApiRequest, res: NextApiResponse) {
  */
 
 function put(req: NextApiRequest, res: NextApiResponse) {
-  const { name, description, imgUrl, id } = JSON.parse(req.body);
-  if (!name || !description || !imgUrl || !id) {
-    return res.status(400).end();
-  }
-
-  db.update({ id, name, description, imgUrl });
-  res.status(201).end();
+  // TODO
 }
 
 /*
