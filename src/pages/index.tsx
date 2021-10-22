@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useSwr from 'swr';
-import ProductCard from '../components/ProductCard';
-import EditProductModal from '../components/Modal';
+import ProductCard from '../components/product-card';
+import EditProductModal from '../components/edit-product-modal';
 import { Product } from '../totally-real-database/api';
 import { Button } from '@fabric-ds/react';
 import Link from 'next/link';
