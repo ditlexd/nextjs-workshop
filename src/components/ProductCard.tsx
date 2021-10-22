@@ -1,6 +1,14 @@
 import { Button, Card } from '@fabric-ds/react';
 import { deleteProduct } from '../client/APIClient';
 import React from 'react';
+import { Product } from '../totally-real-database/database-api';
+
+type Props = {
+  product: Product;
+  index: number;
+  onClick: () => void;
+  mutate: () => void;
+};
 
 export default function ProductCard({
   product,
