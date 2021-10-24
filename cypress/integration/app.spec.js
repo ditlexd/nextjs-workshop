@@ -33,7 +33,7 @@ describe('Display products', () => {
     cy.contains('Best shoes around. Guaranteed!');
   });
 });
-/*
+
 describe('Delete a product', () => {
   const productIdToDelete = '6eee6ba7-2110-4216-9d3d-1b74621249ac';
   it('API route should return 201 when product is deleted', () => {
@@ -49,7 +49,7 @@ describe('Delete a product', () => {
     cy.get('Pizza').should('not.exist');
   });
 });
-
+/*
 describe('New product page', () => {
   const name = 'Test item!';
   const description = 'Short description';

@@ -50,7 +50,14 @@ function get(req: NextApiRequest, res: NextApiResponse) {
  * the item.
  */
 function del(req: NextApiRequest, res: NextApiResponse) {
-  // TODO
+  const id = req.query.id;
+
+  if (!id) {
+    res.status(400).end();
+  }
+
+  db.delete(id as string);
+  res.status(201).json(db.getAll());
 }
 
 /*

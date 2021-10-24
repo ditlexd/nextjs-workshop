@@ -3,9 +3,15 @@ import useSwr from 'swr';
 import ProductCard from '../components/product-card';
 import { Button } from '@fabric-ds/react';
 import Link from 'next/link';
+import { deleteProduct } from '../client/APIClient';
 
 export default function App() {
   const { data, error, mutate } = useSwr('/api/products');
+
+  async function handleDeleteProduct(id: string) {
+    await deleteProduct(id);
+    mutate();
+  }
 
   if (error) {
     return (
@@ -38,7 +44,12 @@ export default function App() {
       <ul className="grid f-grid grid-cols-1 md:grid-cols-3 md:gap-32">
         {data.map((product, index) => {
           return (
-            <ProductCard key={product.id} product={product} index={index} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              index={index}
+              handleDeleteProduct={handleDeleteProduct}
+            />
           );
         })}
       </ul>
