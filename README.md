@@ -94,12 +94,13 @@ So here is what you need to do:
 - Implement the `post` function. It should update the product list in the database and return a `201` status code. 
 - Create a new [page](https://nextjs.org/docs/basic-features/pages) by creating a file `src/pages/new-product`. This page should now be visible at `localhost:3000/new-product`.
 - Set up a form with three [textfield](https://react.fabric-ds.io/textfield) and a button to submit the form.
+- You might want to look up the [React docs on forms](https://reactjs.org/docs/forms.html) for this.
 - The form should do a POST request similar to the DELETE request you implemented in the previous assignment.
 - The request needs to contain `name`, `description` and `imgUrl`.
 
 ## Update product page
 
-Here you could use the provided `<Modal>` component. A `Modal` is a "pop up", or an overlay over the screen.
+Here you could use the provided `<EditProductModal>` component. A `Modal` is a "pop up", or an overlay over the screen.
 
 This modal takes two props: `productInModal` and `onDismiss`. The former is of the type `Product | null` while the latter
 is a function that should trigger the removal of the modal. 
