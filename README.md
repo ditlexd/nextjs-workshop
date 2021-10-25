@@ -42,7 +42,7 @@ THen you need to run
 npm run test
 ```
 
-This will set up a seperate server on port `9000` and create a headless browser that will test that everything
+This will set up a separate server on port `9000` and create a headless browser that will test that everything
 works as it should. If this is confusing, don't worry. Hopefully it will make sense soon, and you should be able
 to complete the workshop even if it doesn't! 
 
