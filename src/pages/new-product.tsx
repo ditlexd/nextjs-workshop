@@ -1,6 +1,8 @@
 import { Button, TextField } from '@fabric-ds/react';
 import Link from 'next/link';
 import { useState } from 'react';
+// @ts-expect-error Module '"@fabric-ds/react"' has no exported member 'toast'.ts(2305)
+import { toast } from '@fabric-ds/elements';
 import { postNewProduct } from '../client/APIClient';
 
 export default function NewProductPage() {
@@ -14,6 +16,8 @@ export default function NewProductPage() {
     setName('');
     setDescription('');
     setImgUrl('');
+
+    toast('Successfully created new product');
   }
 
   return (

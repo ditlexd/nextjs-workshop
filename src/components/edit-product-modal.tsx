@@ -2,6 +2,8 @@ import { Button, Modal, TextField } from '@fabric-ds/react';
 import { useState } from 'react';
 import { updateProduct } from '../client/APIClient';
 import { useSWRConfig } from 'swr';
+// @ts-expect-error Module '"@fabric-ds/react"' has no exported member 'toast'.ts(2305)
+import { toast } from '@fabric-ds/elements';
 import { Product } from '../totally-real-database/api';
 
 export default function EditProductModal({
@@ -21,6 +23,8 @@ export default function EditProductModal({
     updateProduct({ name, description, imgUrl, id: product.id })
       .then(() => mutate('/api/products'))
       .then(onDismiss);
+
+    toast('Successfully updated product');
   }
 
   return (
