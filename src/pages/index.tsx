@@ -34,12 +34,10 @@ export default function App() {
 
   return (
     <div className={'page-container'}>
-      {productInModal && (
-        <EditProductModal
-          product={productInModal}
-          onDismiss={() => setProductInModal(null)}
-        />
-      )}
+      <EditProductModal
+        product={productInModal}
+        onDismiss={() => setProductInModal(null)}
+      />
 
       <div className="flex items-center justify-between	mt-40 mb-12">
         <h2>Here are some products!</h2>

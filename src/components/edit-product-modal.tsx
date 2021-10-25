@@ -12,9 +12,9 @@ export default function EditProductModal({
   onDismiss: () => void;
 }) {
   const { mutate } = useSWRConfig();
-  const [name, setName] = useState(product.name);
-  const [description, setDescription] = useState(product.description);
-  const [imgUrl, setImgUrl] = useState(product.imgUrl);
+  const [name, setName] = useState(product?.name || '');
+  const [description, setDescription] = useState(product?.description || '');
+  const [imgUrl, setImgUrl] = useState(product?.imgUrl || '');
 
   function onSubmit(e) {
     e.preventDefault();
