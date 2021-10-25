@@ -75,7 +75,14 @@ function del(req: NextApiRequest, res: NextApiResponse) {
  */
 
 function put(req: NextApiRequest, res: NextApiResponse) {
-  // TODO
+  const { name, description, imgUrl, id } = JSON.parse(req.body);
+
+  if (!name || !description || !imgUrl || !id) {
+    res.status(400).end();
+  }
+
+  db.update({ name, description, imgUrl, id });
+  res.status(201).json(db.getAll());
 }
 
 /*

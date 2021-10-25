@@ -75,7 +75,6 @@ describe('New product page', () => {
   });
 });
 
-/*
 describe('Update product', () => {
   const name = 'Updated item';
   const description = 'Also a pretty short description';
@@ -102,5 +101,3 @@ describe('Update product', () => {
     cy.contains('Really good, brand new product');
   });
 });
-
- */
