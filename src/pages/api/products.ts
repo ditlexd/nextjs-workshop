@@ -25,7 +25,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
 /*
  * Create a new product.
- * Should be an object { name: string, description: string, imgUr: string }
+ * req.body should be an object { name: string, description: string, imgUr: string }
  * Should respond with a 201 status code or 400 if any of the arguments
  * are invalid (null/undefined)
  */
@@ -35,7 +35,6 @@ function post(req: NextApiRequest, res: NextApiResponse) {
 
 /*
  * Get an existing product
- * Should take an optional product ID as a parameter
  * Responds with 200 and the list of products or a single product
  * iff ID is provided.
  */

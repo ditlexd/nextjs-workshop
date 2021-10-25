@@ -11,43 +11,19 @@ export default function EditProductModal({
   product: Product | null;
   onDismiss: () => void;
 }) {
+  // Call this function to update the product list mutate('/api/products')
   const { mutate } = useSWRConfig();
-  const [name, setName] = useState(product.name);
-  const [description, setDescription] = useState(product.description);
-  const [imgUrl, setImgUrl] = useState(product.imgUrl);
 
-  function onSubmit(e) {
-    e.preventDefault();
-    updateProduct({ name, description, imgUrl, id: product.id })
-      .then(() => mutate('/api/products'))
-      .then(onDismiss);
+  function onSubmit() {
+    // TODO: Implement what happens when we submit the form
   }
 
+  // TODO: Create a form to update a product
   return (
     <Modal open={!!product} onDismiss={onDismiss}>
       <h4>Edit product</h4>
       <form onSubmit={onSubmit}>
-        <TextField
-          data-cy={'edit-name'}
-          label={'Name'}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <TextField
-          data-cy={'edit-description'}
-          label={'Description'}
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <TextField
-          data-cy={'edit-image-url'}
-          label={'Image url'}
-          value={imgUrl}
-          onChange={(e) => setImgUrl(e.target.value)}
-        />
-        <Button data-cy={'submit-edit'} type={'submit'}>
-          Submit
-        </Button>
+        {/* TODO add some input fields and a submit button */}
       </form>
     </Modal>
   );
