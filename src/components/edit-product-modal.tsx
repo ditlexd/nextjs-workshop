@@ -1,5 +1,5 @@
 import { Button, Modal, TextField } from '@fabric-ds/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { updateProduct } from '../client/APIClient';
 import { useSWRConfig } from 'swr';
 import { Product } from '../totally-real-database/api';
@@ -15,6 +15,14 @@ export default function EditProductModal({
   const [name, setName] = useState(product?.name || '');
   const [description, setDescription] = useState(product?.description || '');
   const [imgUrl, setImgUrl] = useState(product?.imgUrl || '');
+
+  useEffect(() => {
+    if (!product) return;
+
+    setName(product.name);
+    setDescription(product.description);
+    setImgUrl(product.imgUrl);
+  }, [product]);
 
   function onSubmit(e) {
     e.preventDefault();
