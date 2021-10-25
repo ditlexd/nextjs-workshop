@@ -35,7 +35,6 @@ export default function ProductCard({
           <Button
             data-cy={'Delete'}
             negative
-            pill
             small
             onClick={() => handleDeleteProduct(product.id)}
           >
