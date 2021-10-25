@@ -58,13 +58,13 @@ We'll use FINNs design system called [Fabric](https://www.fabric-ds.io/) along w
 Nextjs is a framework for React, and Fabric can be used with pure HTML, React, Vue etc. We will be using its React components along this
 some of its CSS classes. 
 
-We have made some components ready for you as well. The `<ProductCard>` and `<Modal>` components are 
-made ready for you, but if you like a challenge, feel free to make these yourself! Or customize them.
+We have made some components ready for you as well. The `<ProductCard>` is ready, and the `<EditProductModal>` is 
+created as a starting point. One of your tasks will be to finish the modal.
 
 ## Render products
 
-We will live demo this for you, so that you get a feel for how to approach these problems, along with learning a few ways
-to fetch data with Nextjs. 
+We will live demo this for you, so that you get a feel for how to approach these problems, along with learning how to
+fetch and deliver data with next. 
 
 ## Delete product
 
@@ -72,8 +72,8 @@ Here you need to first implement the backend (server) code for deleting a produc
 
 Go on into `src/pages/api/products.ts` and find the function call `del`. 
 
-This function should parse the `id` of the item to be deleted from the `req` object, and then call the `totally-real-database` 
-function `deleteElement`.
+This function should parse the `id` of the item to be deleted from the `req.query` object, and then use the `db` class
+to delete the product with the corresponding id. 
 
 When this is done, send a `201` status code back to the client.
 
@@ -81,7 +81,8 @@ For the client code, you need to update the list of products somehow. You can do
 recommend for this app is that you use the `mutate()` function that is provided by [useSWR.](https://swr.vercel.app/docs/mutation)
 This will fetch the new list of products automatically for you. 
 
-Another option is to modify the `delete` API so that it returns the new list of products right away. 
+Another option is to modify the `delete` API so that it returns the new list of products right away, and set that 
+as a React state withe the `useState` [hook](https://reactjs.org/docs/hooks-state.html).
 
 
 ## New product page
@@ -131,4 +132,14 @@ As for the client, you should probably do something like this:
 one of the products. We need a function 
 - The modal should have a form, much like the new product page. The form should be pre-filled with values that 
 
+## The next steps
 
+If you got this far, congrats! 
+
+Here are some suggestions for what you could do next: 
+
+- Implement data fetching with [getStaticProps](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation)
+instead of the `useSwr`. This requires you to think slightly differently about how to update your UI when something changes
+with the list of products.
+  
+- Implement a search bar. You can create a search function in the API, or just filter on the products already displayed
