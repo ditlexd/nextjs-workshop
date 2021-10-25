@@ -49,7 +49,7 @@ describe('Delete a product', () => {
     cy.get('Pizza').should('not.exist');
   });
 });
-/*
+
 describe('New product page', () => {
   const name = 'Test item!';
   const description = 'Short description';
@@ -75,6 +75,7 @@ describe('New product page', () => {
   });
 });
 
+/*
 describe('Update product', () => {
   const name = 'Updated item';
   const description = 'Also a pretty short description';

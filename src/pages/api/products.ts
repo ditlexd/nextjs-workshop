@@ -25,12 +25,19 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
 /*
  * Create a new product.
- * Should be an object { name: string, description: string, imgUr: string }
+ * Body should be an object { name: string, description: string, imgUrl: string }
  * Should respond with a 201 status code or 400 if any of the arguments
  * are invalid (null/undefined)
  */
 function post(req: NextApiRequest, res: NextApiResponse) {
-  // TODO
+  const { name, description, imgUrl } = JSON.parse(req.body);
+
+  if (!name || !description || !imgUrl) {
+    res.status(400).end();
+  }
+
+  db.insert(JSON.parse(req.body));
+  res.status(201).end();
 }
 
 /*

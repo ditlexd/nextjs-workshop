@@ -24,7 +24,7 @@ export class Database {
   }
 
   insert(product: Omit<Product, 'id'>) {
-    this.products = [...this.products, { id: uuidv4(), ...product }];
+    this.products = [{ id: uuidv4(), ...product }, ...this.products];
   }
 
   update(product: Product) {
