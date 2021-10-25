@@ -1,6 +1,11 @@
 import React from 'react';
 import { SWRConfig } from 'swr';
 
+/*
+ * TODO: Ignore this page. It is only for setting up CSS
+ *  and a data fetching method.
+ */
+
 function MyApp({ Component, pageProps }) {
   return (
     <main className="page-container">
